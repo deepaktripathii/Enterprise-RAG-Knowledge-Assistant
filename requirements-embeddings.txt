@@ -1,0 +1,4 @@
+# Production embeddings (Sentence Transformers + torch CPU).
+# Install with: pip install -r requirements-embeddings.txt
+-r requirements.txt
+sentence-transformers>=3.0,<7
