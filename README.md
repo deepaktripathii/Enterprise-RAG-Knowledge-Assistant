@@ -263,26 +263,7 @@ through the UI.
 | Next.js 14 + Tailwind | Frontend |
 | Docker + Compose, GitHub Actions | Packaging and CI |
 
-## Limitations & next steps
 
-- The sample corpus is synthetic; evaluate on real policies before deployment.
-- Dense retrieval only — add BM25 + RRF for identifiers and acronyms.
-- No reranker yet; a cross-encoder would improve context precision.
-- Faithfulness is a lexical heuristic; add a calibrated LLM judge.
-- Add authentication, per-document ACLs, prompt-injection filtering and rate
-  limiting before exposing it beyond a trusted network.
 
-## Documentation
 
-- [Architecture](docs/architecture.md)
-- [API reference](docs/api.md)
-- [RAG evaluation](docs/rag-evaluation.md)
-- [Deployment notes](docs/deployment.md)
-- [System card](docs/system-card.md)
-- [Interview notes](docs/interview-notes.md)
-- [Sample data](data/README.md)
 
-## Licence
-
-MIT — see [LICENSE](LICENSE). The sample policy documents are synthetic and do
-not describe a real company.
