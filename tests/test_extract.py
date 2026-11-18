@@ -5,7 +5,7 @@ from __future__ import annotations
 import pymupdf
 import pytest
 
-from sourceiq.documents.extract import PdfExtractionError, clean_text, extract_pdf
+from rag_assistant.documents.extract import PdfExtractionError, clean_text, extract_pdf
 
 
 def test_clean_text_joins_hyphenated_lines():

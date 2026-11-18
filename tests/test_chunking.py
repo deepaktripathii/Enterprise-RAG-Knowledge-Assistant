@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import pytest
 
-from sourceiq.documents.chunking import chunk_pages
-from sourceiq.documents.extract import PageText
+from rag_assistant.documents.chunking import chunk_pages
+from rag_assistant.documents.extract import PageText
 
 
 def _page(number: int, sentences: int = 40) -> PageText:

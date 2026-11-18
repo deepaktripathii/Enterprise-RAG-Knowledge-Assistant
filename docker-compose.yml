@@ -1,7 +1,7 @@
 services:
   qdrant:
     image: qdrant/qdrant:v1.12.5
-    container_name: sourceiq-qdrant
+    container_name: rag_assistant-qdrant
     ports:
       - "6333:6333"
     volumes:
@@ -15,17 +15,17 @@ services:
 
   postgres:
     image: postgres:16-alpine
-    container_name: sourceiq-postgres
+    container_name: rag_assistant-postgres
     environment:
-      POSTGRES_USER: sourceiq
-      POSTGRES_PASSWORD: sourceiq
-      POSTGRES_DB: sourceiq
+      POSTGRES_USER: rag_assistant
+      POSTGRES_PASSWORD: rag_assistant
+      POSTGRES_DB: rag_assistant
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U sourceiq -d sourceiq"]
+      test: ["CMD-SHELL", "pg_isready -U rag_assistant -d rag_assistant"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -36,8 +36,8 @@ services:
       context: .
       args:
         EMBEDDING_MODEL: sentence-transformers/all-MiniLM-L6-v2
-    image: sourceiq-api:latest
-    container_name: sourceiq-api
+    image: rag_assistant-api:latest
+    container_name: rag_assistant-api
     depends_on:
       qdrant:
         condition: service_healthy
@@ -46,15 +46,15 @@ services:
     ports:
       - "8000:8000"
     environment:
-      SOURCEIQ_DATA_DIR: /app/data
-      SOURCEIQ_ARTIFACT_DIR: /app/artifacts
-      SOURCEIQ_QDRANT_URL: http://qdrant:6333
-      SOURCEIQ_DATABASE_URL: postgresql+psycopg://sourceiq:sourceiq@postgres:5432/sourceiq
-      SOURCEIQ_EMBEDDING_BACKEND: sentence-transformers
-      SOURCEIQ_LLM_PROVIDER: ${SOURCEIQ_LLM_PROVIDER:-auto}
-      SOURCEIQ_LLM_API_KEY: ${SOURCEIQ_LLM_API_KEY:-}
-      SOURCEIQ_LLM_MODEL: ${SOURCEIQ_LLM_MODEL:-gpt-4o-mini}
-      SOURCEIQ_SEED_DEMO: "1"
+      RAG_DATA_DIR: /app/data
+      RAG_ARTIFACT_DIR: /app/artifacts
+      RAG_QDRANT_URL: http://qdrant:6333
+      RAG_DATABASE_URL: postgresql+psycopg://rag_assistant:rag_assistant@postgres:5432/rag_assistant
+      RAG_EMBEDDING_BACKEND: sentence-transformers
+      RAG_LLM_PROVIDER: ${RAG_LLM_PROVIDER:-auto}
+      RAG_LLM_API_KEY: ${RAG_LLM_API_KEY:-}
+      RAG_LLM_MODEL: ${RAG_LLM_MODEL:-gpt-4o-mini}
+      RAG_SEED_DEMO: "1"
     volumes:
       - ./data:/app/data
       - ./artifacts:/app/artifacts
@@ -77,8 +77,8 @@ services:
       context: ./frontend
       args:
         NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
-    image: sourceiq-frontend:latest
-    container_name: sourceiq-frontend
+    image: rag_assistant-frontend:latest
+    container_name: rag_assistant-frontend
     depends_on:
       api:
         condition: service_healthy

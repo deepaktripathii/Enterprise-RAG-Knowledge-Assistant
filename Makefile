@@ -19,7 +19,7 @@ seed: docs
 	python scripts/seed_documents.py
 
 api:
-	uvicorn sourceiq.api.main:app --reload --port 8000
+	uvicorn rag_assistant.api.main:app --reload --port 8000
 
 frontend:
 	cd frontend && npm run dev
@@ -37,7 +37,7 @@ lint:
 	ruff check src tests scripts
 
 docker-build:
-	docker build -t sourceiq-api:latest .
+	docker build -t rag_assistant-api:latest .
 
 docker-up:
 	docker compose up --build

@@ -75,7 +75,7 @@ normalised vectors it is just the dot product, bounded to [-1, 1]. Qdrant's
 **What is top-K retrieval?**
 Return the K nearest chunks. K trades recall against prompt size and latency.
 The default is 5, configurable per request (`top_k`) and globally
-(`SOURCEIQ_RETRIEVAL_TOP_K`).
+(`RAG_RETRIEVAL_TOP_K`).
 
 ## RAG
 
@@ -139,7 +139,7 @@ it against a human-labelled sample.
 
 **How is conversation history handled?**
 Messages are stored with the citation snapshot. Only the last
-`SOURCEIQ_MAX_HISTORY_MESSAGES` turns are passed to the LLM, and short follow-ups
+`RAG_MAX_HISTORY_MESSAGES` turns are passed to the LLM, and short follow-ups
 are merged with the previous question before retrieval. Clearing a conversation
 deletes its messages; documents and vectors are untouched.
 

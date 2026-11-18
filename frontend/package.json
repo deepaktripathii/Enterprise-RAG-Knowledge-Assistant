@@ -1,8 +1,8 @@
 {
-  "name": "sourceiq-frontend",
+  "name": "rag_assistant-frontend",
   "version": "1.0.0",
   "private": true,
-  "description": "SourceIQ chat and document management UI",
+  "description": "RAG Knowledge Assistant chat and document management UI",
   "scripts": {
     "dev": "next dev -p 3000",
     "build": "next build",

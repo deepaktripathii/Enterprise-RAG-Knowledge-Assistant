@@ -56,7 +56,7 @@ that never ends.
 ```
 POST /chat {question, conversation_id?, top_k?, document_ids?}
   -> load or create conversation
-  -> load recent turns (bounded by SOURCEIQ_MAX_HISTORY_MESSAGES)
+  -> load recent turns (bounded by RAG_MAX_HISTORY_MESSAGES)
   -> optionally expand follow-up questions with the previous user turn
   -> embed question, Qdrant top-k cosine search (optional document filter)
   -> relevance gate: if top score < min_relevance_score -> refusal
@@ -71,19 +71,19 @@ POST /chat {question, conversation_id?, top_k?, document_ids?}
 
 | Path | Responsibility |
 | --- | --- |
-| `src/sourceiq/config.py` | Env-driven settings, paths, chunk/retrieval/LLM knobs |
-| `src/sourceiq/db/models.py` | Documents, conversations, messages, query logs |
-| `src/sourceiq/db/repository.py` | Sessions, CRUD, monitoring aggregates |
-| `src/sourceiq/documents/extract.py` | PyMuPDF extraction, cleaning, page provenance |
-| `src/sourceiq/documents/chunking.py` | Sentence-aware, page-scoped overlapping chunks |
-| `src/sourceiq/documents/service.py` | Upload validation, lifecycle, dedup, deletion |
-| `src/sourceiq/embeddings/` | Sentence Transformer + deterministic hashing fallback |
-| `src/sourceiq/vectorstore/qdrant_store.py` | Collection management, upsert, filtered search |
-| `src/sourceiq/llm/` | Prompts, OpenAI-compatible client, extractive answerer |
-| `src/sourceiq/rag/` | Retriever, generator, citation validation, orchestration |
-| `src/sourceiq/evaluation/` | Metrics, dataset loader, end-to-end runner |
-| `src/sourceiq/api/` | FastAPI routes, schemas, graceful degradation |
-| `src/sourceiq/services.py` | Shared service container for API, scripts, tests |
+| `src/rag_assistant/config.py` | Env-driven settings, paths, chunk/retrieval/LLM knobs |
+| `src/rag_assistant/db/models.py` | Documents, conversations, messages, query logs |
+| `src/rag_assistant/db/repository.py` | Sessions, CRUD, monitoring aggregates |
+| `src/rag_assistant/documents/extract.py` | PyMuPDF extraction, cleaning, page provenance |
+| `src/rag_assistant/documents/chunking.py` | Sentence-aware, page-scoped overlapping chunks |
+| `src/rag_assistant/documents/service.py` | Upload validation, lifecycle, dedup, deletion |
+| `src/rag_assistant/embeddings/` | Sentence Transformer + deterministic hashing fallback |
+| `src/rag_assistant/vectorstore/qdrant_store.py` | Collection management, upsert, filtered search |
+| `src/rag_assistant/llm/` | Prompts, OpenAI-compatible client, extractive answerer |
+| `src/rag_assistant/rag/` | Retriever, generator, citation validation, orchestration |
+| `src/rag_assistant/evaluation/` | Metrics, dataset loader, end-to-end runner |
+| `src/rag_assistant/api/` | FastAPI routes, schemas, graceful degradation |
+| `src/rag_assistant/services.py` | Shared service container for API, scripts, tests |
 | `frontend/` | Next.js chat + document UI |
 
 ## Key design decisions
@@ -124,7 +124,7 @@ POST /chat {question, conversation_id?, top_k?, document_ids?}
 | Invalid citation marker | Marker stripped, answer flagged, only retrieved sources returned |
 | Qdrant unavailable | `/health` reports `degraded`; uploads fail with an actionable error |
 | Embedding model switched | Startup fails fast with the collection/embedding dimension mismatch |
-| Very long conversation | History is truncated to `SOURCEIQ_MAX_HISTORY_MESSAGES` before prompting |
+| Very long conversation | History is truncated to `RAG_MAX_HISTORY_MESSAGES` before prompting |
 
 ## Where it can grow
 

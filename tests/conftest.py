@@ -18,8 +18,8 @@ SRC_DIR = Path(__file__).resolve().parents[1] / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-from sourceiq.config import get_settings  # noqa: E402
-from sourceiq.services import build_services  # noqa: E402
+from rag_assistant.config import get_settings  # noqa: E402
+from rag_assistant.services import build_services  # noqa: E402
 
 
 def write_pdf(path: Path, pages: list[str]) -> Path:

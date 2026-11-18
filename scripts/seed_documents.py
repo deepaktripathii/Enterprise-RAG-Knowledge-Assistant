@@ -12,8 +12,8 @@ import argparse
 from pathlib import Path
 
 import _bootstrap  # noqa: F401  (adds src/ to sys.path)
-from sourceiq.config import get_settings
-from sourceiq.services import build_services
+from rag_assistant.config import get_settings
+from rag_assistant.services import build_services
 
 
 def main(argv: list[str] | None = None) -> int:

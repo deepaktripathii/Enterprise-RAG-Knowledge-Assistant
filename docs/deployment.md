@@ -2,22 +2,22 @@
 
 ## Configuration
 
-All settings are environment variables prefixed with `SOURCEIQ_` (see
+All settings are environment variables prefixed with `RAG_` (see
 `.env.example`). The ones that change behaviour the most:
 
 | Variable | Default | Notes |
 | --- | --- | --- |
-| `SOURCEIQ_EMBEDDING_BACKEND` | `auto` | `sentence-transformers`, `hashing`, or `auto` |
-| `SOURCEIQ_EMBEDDING_MODEL` | `sentence-transformers/all-MiniLM-L6-v2` | Any Sentence Transformers model |
-| `SOURCEIQ_EMBEDDING_BATCH_SIZE` | `32` | Lower it if ingestion runs out of memory |
-| `SOURCEIQ_CHUNK_SIZE` / `_OVERLAP` | `1000` / `150` | Characters; re-index after changing |
-| `SOURCEIQ_RETRIEVAL_TOP_K` | `5` | Prompt size vs recall |
-| `SOURCEIQ_MIN_RELEVANCE_SCORE` | `0.2` | Raise it for stricter refusals |
-| `SOURCEIQ_LLM_PROVIDER` | `auto` | `openai`, `extractive`, or `auto` |
-| `SOURCEIQ_LLM_API_KEY` | unset | Required for `openai` |
-| `SOURCEIQ_QDRANT_URL` | unset | Unset = embedded Qdrant on disk |
-| `SOURCEIQ_DATABASE_URL` | SQLite in `data/` | Use `postgresql+psycopg://...` for Postgres |
-| `SOURCEIQ_MAX_UPLOAD_MB` | `20` | Enforced before touching disk |
+| `RAG_EMBEDDING_BACKEND` | `auto` | `sentence-transformers`, `hashing`, or `auto` |
+| `RAG_EMBEDDING_MODEL` | `sentence-transformers/all-MiniLM-L6-v2` | Any Sentence Transformers model |
+| `RAG_EMBEDDING_BATCH_SIZE` | `32` | Lower it if ingestion runs out of memory |
+| `RAG_CHUNK_SIZE` / `_OVERLAP` | `1000` / `150` | Characters; re-index after changing |
+| `RAG_RETRIEVAL_TOP_K` | `5` | Prompt size vs recall |
+| `RAG_MIN_RELEVANCE_SCORE` | `0.2` | Raise it for stricter refusals |
+| `RAG_LLM_PROVIDER` | `auto` | `openai`, `extractive`, or `auto` |
+| `RAG_LLM_API_KEY` | unset | Required for `openai` |
+| `RAG_QDRANT_URL` | unset | Unset = embedded Qdrant on disk |
+| `RAG_DATABASE_URL` | SQLite in `data/` | Use `postgresql+psycopg://...` for Postgres |
+| `RAG_MAX_UPLOAD_MB` | `20` | Enforced before touching disk |
 
 ## Modes
 
@@ -29,7 +29,7 @@ SQLite + embedded Qdrant + hashing or MiniLM embeddings. No services required:
 pip install -r requirements.txt && pip install -e .
 python scripts/make_sample_documents.py
 python scripts/seed_documents.py --backend hashing
-uvicorn sourceiq.api.main:app --reload
+uvicorn rag_assistant.api.main:app --reload
 ```
 
 ### Docker Compose
@@ -37,13 +37,13 @@ uvicorn sourceiq.api.main:app --reload
 `docker compose up --build` starts Qdrant, PostgreSQL, the API and the Next.js
 frontend. The API image bakes the embedding model so containers do not need
 network access at start, and the entrypoint seeds the sample corpus on first
-boot (`SOURCEIQ_SEED_DEMO=0` disables that).
+boot (`RAG_SEED_DEMO=0` disables that).
 
 ### Production checklist
 
-- Set `SOURCEIQ_DATABASE_URL` to PostgreSQL and run the API behind HTTPS.
-- Point `SOURCEIQ_QDRANT_URL` at a managed Qdrant cluster; set
-  `SOURCEIQ_QDRANT_API_KEY` when required.
+- Set `RAG_DATABASE_URL` to PostgreSQL and run the API behind HTTPS.
+- Point `RAG_QDRANT_URL` at a managed Qdrant cluster; set
+  `RAG_QDRANT_API_KEY` when required.
 - Put uploads on object storage if you run more than one API replica; the local
   filesystem is shared only inside one container.
 - Add authentication/authorisation in front of the API and per-document ACLs in
@@ -56,7 +56,7 @@ boot (`SOURCEIQ_SEED_DEMO=0` disables that).
 
 ## Switching embedding models
 
-Qdrant collections have a fixed vector size. Changing `SOURCEIQ_EMBEDDING_MODEL`
+Qdrant collections have a fixed vector size. Changing `RAG_EMBEDDING_MODEL`
 (or switching between hashing and Sentence Transformers) requires a fresh
 collection:
 
@@ -70,7 +70,7 @@ comparing incompatible vectors.
 
 ## Backups
 
-- PostgreSQL: standard `pg_dump` of the `sourceiq` database (documents,
+- PostgreSQL: standard `pg_dump` of the `rag_assistant` database (documents,
   conversations, query logs).
 - Qdrant: snapshot the collection or the `qdrant_data` volume.
 - Uploads: back up `data/uploads/` together with the database. A database row

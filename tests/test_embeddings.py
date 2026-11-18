@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from sourceiq.embeddings.hashing import HashingEmbedder
+from rag_assistant.embeddings.hashing import HashingEmbedder
 
 
 def test_dimensions_and_shape():

@@ -4,16 +4,16 @@ from __future__ import annotations
 
 import pytest
 
-from sourceiq.llm.base import LLMClient, LLMError, LLMResult
-from sourceiq.llm.extractive import ExtractiveLLM
-from sourceiq.rag.citations import extract_citations
-from sourceiq.rag.retriever import Retriever
-from sourceiq.rag.service import (
+from rag_assistant.llm.base import LLMClient, LLMError, LLMResult
+from rag_assistant.llm.extractive import ExtractiveLLM
+from rag_assistant.rag.citations import extract_citations
+from rag_assistant.rag.retriever import Retriever
+from rag_assistant.rag.service import (
     ConversationNotFoundError,
     RagService,
     expand_query,
 )
-from sourceiq.vectorstore.base import RetrievedChunk
+from rag_assistant.vectorstore.base import RetrievedChunk
 
 
 def _chunk(text: str, page: int = 1) -> RetrievedChunk:

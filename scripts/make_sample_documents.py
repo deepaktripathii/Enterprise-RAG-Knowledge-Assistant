@@ -18,7 +18,7 @@ from pathlib import Path
 import pymupdf
 
 import _bootstrap  # noqa: F401  (adds src/ to sys.path)
-from sourceiq.config import get_settings
+from rag_assistant.config import get_settings
 
 PAGE_WIDTH = 595
 PAGE_HEIGHT = 842
@@ -168,7 +168,7 @@ DOCUMENTS: dict[str, list[list[str]]] = {
     "Product_Support_SLA.pdf": [
         [
             "1. Support tiers",
-            "SourceIQ offers Standard, Business and Enterprise support plans.",
+            "RAG Knowledge Assistant offers Standard, Business and Enterprise support plans.",
             "Enterprise customers receive a dedicated technical account manager.",
             "Support is available 24 hours a day for severity 1 issues on Business and Enterprise plans.",
         ],

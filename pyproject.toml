@@ -3,17 +3,15 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "sourceiq"
+name = "rag_assistant"
 version = "1.0.0"
 description = "Enterprise RAG knowledge assistant with citations, conversation history and retrieval evaluation"
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
 authors = [{ name = "Deepak Tripathi" }]
 keywords = ["rag", "llm", "qdrant", "fastapi", "sentence-transformers", "ai-engineering"]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
 
@@ -41,4 +39,4 @@ ignore = ["E501"]
 "scripts/*.py" = ["E402"]
 "tests/*.py" = ["E402"]
 # FastAPI's dependency injection requires the File() call in the signature.
-"src/sourceiq/api/main.py" = ["B008"]
+"src/rag_assistant/api/main.py" = ["B008"]

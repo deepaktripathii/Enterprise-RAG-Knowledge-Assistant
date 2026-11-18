@@ -15,11 +15,11 @@ import shutil
 from qdrant_client import QdrantClient
 
 import _bootstrap  # noqa: F401  (adds src/ to sys.path)
-from sourceiq.config import get_settings
+from rag_assistant.config import get_settings
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Reset the SourceIQ vector store.")
+    parser = argparse.ArgumentParser(description="Reset the RAG Knowledge Assistant vector store.")
     parser.add_argument("--yes", action="store_true", help="Skip the confirmation prompt.")
     parser.add_argument("--keep-uploads", action="store_true")
     args = parser.parse_args(argv)

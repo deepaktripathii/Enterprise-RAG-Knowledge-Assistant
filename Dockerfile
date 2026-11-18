@@ -6,9 +6,9 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=1 \
     PYTHONPATH=/app/src \
-    SOURCEIQ_DATA_DIR=/app/data \
-    SOURCEIQ_ARTIFACT_DIR=/app/artifacts \
-    SOURCEIQ_QDRANT_PATH=/app/.qdrant \
+    RAG_DATA_DIR=/app/data \
+    RAG_ARTIFACT_DIR=/app/artifacts \
+    RAG_QDRANT_PATH=/app/.qdrant \
     HF_HOME=/app/.cache/huggingface
 
 WORKDIR /app
@@ -35,6 +35,6 @@ COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN pip install --no-deps -e . && chmod +x /usr/local/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["uvicorn", "sourceiq.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "rag_assistant.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 EXPOSE 8000

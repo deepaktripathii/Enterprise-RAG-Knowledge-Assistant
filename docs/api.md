@@ -177,7 +177,7 @@ it on a demo or staging instance.
   "embedding_dimensions": 384,
   "llm_provider": "extractive",
   "llm_model": "extractive-grounded-v1",
-  "collection": "sourceiq_chunks",
+  "collection": "rag_assistant_chunks",
   "vectors": 23,
   "documents": { "completed": 5, "total": 5 },
   "components": {

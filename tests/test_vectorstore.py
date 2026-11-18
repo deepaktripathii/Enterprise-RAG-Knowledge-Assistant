@@ -5,8 +5,8 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from sourceiq.vectorstore.base import ChunkRecord
-from sourceiq.vectorstore.qdrant_store import QdrantVectorStore
+from rag_assistant.vectorstore.base import ChunkRecord
+from rag_assistant.vectorstore.qdrant_store import QdrantVectorStore
 
 DIMENSIONS = 16
 

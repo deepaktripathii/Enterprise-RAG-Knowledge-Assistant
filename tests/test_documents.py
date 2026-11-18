@@ -5,7 +5,7 @@ from __future__ import annotations
 import pymupdf
 import pytest
 
-from sourceiq.documents.service import DocumentValidationError
+from rag_assistant.documents.service import DocumentValidationError
 
 
 def _upload(services, path, *, content_type="application/pdf"):
@@ -111,7 +111,7 @@ def test_blank_pdf_is_marked_failed(services, tmp_path):
 
 
 def test_processing_unknown_document_raises(services):
-    from sourceiq.documents.service import DocumentNotFoundError
+    from rag_assistant.documents.service import DocumentNotFoundError
 
     with pytest.raises(DocumentNotFoundError):
         services.document_service.process("does-not-exist")

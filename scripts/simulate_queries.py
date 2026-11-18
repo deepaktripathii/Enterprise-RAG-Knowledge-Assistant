@@ -11,9 +11,9 @@ import argparse
 import random
 
 import _bootstrap  # noqa: F401  (adds src/ to sys.path)
-from sourceiq.config import get_settings
-from sourceiq.evaluation.runner import load_dataset
-from sourceiq.services import build_services
+from rag_assistant.config import get_settings
+from rag_assistant.evaluation.runner import load_dataset
+from rag_assistant.services import build_services
 
 
 def main(argv: list[str] | None = None) -> int:

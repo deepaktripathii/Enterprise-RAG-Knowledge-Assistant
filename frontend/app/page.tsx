@@ -48,7 +48,7 @@ export default function HomePage() {
             SQ
           </div>
           <div>
-            <h1 className="text-xl font-semibold text-white">SourceIQ</h1>
+            <h1 className="text-xl font-semibold text-white">RAG Knowledge Assistant</h1>
             <p className="text-xs text-slate-400">
               Enterprise AI knowledge intelligence · grounded answers with citations
             </p>
@@ -85,7 +85,7 @@ export default function HomePage() {
           <p className="font-medium">Cannot reach the API at {API_URL}</p>
           <p className="mt-1 text-xs text-rose-200/80">
             {error} — start it with{" "}
-            <code className="rounded bg-black/30 px-1">uvicorn sourceiq.api.main:app --reload</code>.
+            <code className="rounded bg-black/30 px-1">uvicorn rag_assistant.api.main:app --reload</code>.
           </p>
         </div>
       )}
@@ -115,8 +115,8 @@ export default function HomePage() {
 
       <footer className="mt-6 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-600">
         <span>
-          SourceIQ v{health?.version ?? "1.0.0"} · Qdrant collection{" "}
-          {health?.collection ?? "sourceiq_chunks"}
+          RAG Knowledge Assistant v{health?.version ?? "1.0.0"} · Qdrant collection{" "}
+          {health?.collection ?? "rag_assistant_chunks"}
         </span>
         <a href={`${API_URL}/docs`} target="_blank" rel="noreferrer" className="hover:text-slate-300">
           API documentation ↗

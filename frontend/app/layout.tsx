@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SourceIQ | Enterprise Knowledge Assistant",
+  title: "RAG Knowledge Assistant | Enterprise Knowledge Assistant",
   description:
     "Ask questions across your company documents and get grounded answers with page-level citations.",
 };

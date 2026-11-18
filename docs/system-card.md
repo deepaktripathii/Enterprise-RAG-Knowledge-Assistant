@@ -2,7 +2,7 @@
 
 ## What it is
 
-SourceIQ is a retrieval-augmented question answering service for an
+RAG Knowledge Assistant is a retrieval-augmented question answering service for an
 organisation's internal documents. Employees upload PDFs, ask questions and
 receive answers composed from retrieved passages, with document and page
 citations.
@@ -28,7 +28,7 @@ citations.
 - Uploaded files are stored under `data/uploads/<uuid>.pdf`; original names are
   kept in the database for display and citations.
 - Text is extracted with PyMuPDF, split into page-scoped chunks and embedded
-  locally. When `SOURCEIQ_LLM_PROVIDER=openai`, the retrieved chunks and the
+  locally. When `RAG_LLM_PROVIDER=openai`, the retrieved chunks and the
   question are sent to the configured model provider; with the extractive
   answerer nothing leaves the machine.
 - Conversations, messages and query logs (question, answer preview, latencies,

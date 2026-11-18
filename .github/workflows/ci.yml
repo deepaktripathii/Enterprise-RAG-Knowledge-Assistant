@@ -30,10 +30,10 @@ jobs:
 
       - name: Smoke test ingestion and retrieval
         env:
-          SOURCEIQ_EMBEDDING_BACKEND: hashing
-          SOURCEIQ_QDRANT_PATH: .ci-qdrant
-          SOURCEIQ_DATABASE_URL: sqlite:///./ci.db
-          SOURCEIQ_ARTIFACT_DIR: ./ci-artifacts
+          RAG_EMBEDDING_BACKEND: hashing
+          RAG_QDRANT_PATH: .ci-qdrant
+          RAG_DATABASE_URL: sqlite:///./ci.db
+          RAG_ARTIFACT_DIR: ./ci-artifacts
         run: |
           python scripts/make_sample_documents.py
           python scripts/seed_documents.py --backend hashing

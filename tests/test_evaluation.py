@@ -6,15 +6,15 @@ import json
 
 import pytest
 
-from sourceiq.evaluation.metrics import (
+from rag_assistant.evaluation.metrics import (
     citation_accuracy,
     document_matches,
     faithfulness_score,
     keyword_coverage,
     retrieval_metrics,
 )
-from sourceiq.evaluation.runner import run_evaluation
-from sourceiq.vectorstore.base import RetrievedChunk
+from rag_assistant.evaluation.runner import run_evaluation
+from rag_assistant.vectorstore.base import RetrievedChunk
 
 
 def _chunk(filename: str, page: int, text: str = "text", score: float = 0.8) -> RetrievedChunk:

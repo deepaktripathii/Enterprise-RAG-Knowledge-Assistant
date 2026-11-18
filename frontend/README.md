@@ -1,6 +1,6 @@
-# SourceIQ frontend
+# RAG Knowledge Assistant frontend
 
-Next.js 14 + React 18 + Tailwind CSS client for the SourceIQ API.
+Next.js 14 + React 18 + Tailwind CSS client for the RAG Knowledge Assistant API.
 
 ```bash
 cd frontend
